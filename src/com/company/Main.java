@@ -38,7 +38,7 @@ public class Main {
                 case "2":
                     System.out.println("Enter Binary number");
 //                    int binNum = Integer.parseInt(read.readLine());
-                    String binNum = read.readLine();
+                    String binNum =(read.readLine());
                     converter.binaryToDecimal(binNum);
                 break;
                 case "3":
@@ -63,9 +63,9 @@ public class Main {
                     break;
                 case "7":
                     System.out.println("Enter binary number");
-                    String binNum1 = read.readLine();
+                    long binNum1 = Long.parseLong(read.readLine());
                     System.out.println("Enter second binary number");
-                    String binNum2 = read.readLine();
+                    long binNum2 = Long.parseLong(read.readLine());
 
                     converter.binaryAdd(binNum1, binNum2);
                     break;

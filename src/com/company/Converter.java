@@ -9,15 +9,14 @@ import java.util.List;
 public class Converter {
     private static BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
 
-   public  String decimalToBinary(int n)
-    {
+    public String decimalToBinary(int n) {
+
         if (n == 0)
             return "0";
 
         String binaryNum = "";
 
-        while (n > 0)
-        {
+        while (n > 0) {
 
             // n & 1 like n % 2
             // compare last digit of n with 1
@@ -33,121 +32,101 @@ public class Converter {
     }
 
 
-    public void binaryToDecimal(String number){
-       int decimal = Integer.parseInt(number, 2);
-        System.out.println(decimal);
+    public void binaryToDecimal(String number) {
 
+        System.out.println(Integer.parseInt(number, 2));
     }
 
 
-    public void DecimalToOctal(int number){
+    public void DecimalToOctal(int number) {
         System.out.println(Integer.toOctalString(number));
     }
 
-    public void octalToDecimal(String number){
+    public void octalToDecimal(String number) {
 
-       int decimal = Integer.parseInt(number, 8);
+        int decimal = Integer.parseInt(number, 8);
         System.out.println(decimal);
     }
 
-    public void decimalToHexadecimal(int number){
+    public void decimalToHexadecimal(int number) {
         System.out.println(Integer.toHexString(number));
     }
 
-    public void hexadecimalToDecimal(String number){
+    public void hexadecimalToDecimal(String number) {
 
-       int decimal = Integer.parseInt(number, 16);
+        int decimal = Integer.parseInt(number, 16);
         System.out.println(decimal);
     }
 
-    public  void binaryAdd( String number1, String number2 ) throws IOException {
+    public void binaryAdd(long number1, long number2) throws IOException {
 
-        int firstBinaryNumber = Integer.parseInt(number1, 2);
-
-        int secondBinaryNumber = Integer.parseInt(number2, 2);
+        List<Integer> sum = new ArrayList<>();
+        int i = 0, remainder = 0;
 
         System.out.println("1.Add");
-        System.out.println("2.Divide");
-        System.out.println("3.Subtract");
-        System.out.println("4.Multiply");
+        System.out.println("2.Subtract");
         String choice = read.readLine();
 
+        if (choice.equals("1")) {
+            while (number1 != 0 || number2 != 0) {
+                sum.add(0, (int) ((number1 % 10 + number2 % 10 + remainder) % 2));
+                remainder = (int) ((number1 % 10 + number2 % 10 + remainder) / 2);
+                number1 = number1 / 10;
+                number2 = number2 / 10;
+            }
+            if (remainder != 0) {
+                sum.add(0, remainder);
+            }
 
-        if(choice.equals("1")){
-           int  sum = firstBinaryNumber + secondBinaryNumber;
+            System.out.print("result: ");
+            for (Integer bin : sum) {
+                System.out.print(bin);
+            }
+            System.out.print("\n");
 
-            System.out.println(firstBinaryNumber + " + "  +  secondBinaryNumber + " = " + sum);
-            System.out.println(number1 + " + " + number2 + " = " + Integer.toBinaryString(sum));
+        }else if (choice.equals("2")) {
+            String firstBin = String.valueOf(number1);
+            String secondBin = String.valueOf(number2);
 
-        }else if (choice.equals("2")){
-            int sum = firstBinaryNumber / secondBinaryNumber;
+            int firstBinaryNumber = Integer.parseInt(firstBin, 2);
+            int secondBinaryNumber = Integer.parseInt(secondBin, 2);
 
-            System.out.println(firstBinaryNumber + " / "  +  secondBinaryNumber + " = " + sum);
-            System.out.println(number1 + " / " + number2 + " = " + Integer.toBinaryString(sum));
+            int result = firstBinaryNumber - secondBinaryNumber;
 
-        }else if(choice.equals("3")){
-
-            int sum = firstBinaryNumber - secondBinaryNumber;
-
-            System.out.println(firstBinaryNumber + " - "  +  secondBinaryNumber + " = " + sum);
-            System.out.println(number1 + " - " + number2 + " = " + Integer.toBinaryString(sum));
-
-        } else if(choice.equals("4")){
-            int sum = firstBinaryNumber * secondBinaryNumber;
-
-            System.out.println(firstBinaryNumber + " * "  +  secondBinaryNumber + " = " + sum);
-            System.out.println(number1 + " * " + number2 + " = " + Integer.toBinaryString(sum));
+            System.out.println(firstBinaryNumber + " - "  +  secondBinaryNumber + " = " + result);
+            System.out.println(number1 + " - " + number2 + " = " + Integer.toBinaryString(result));
         }
-
-
-
-
     }
 
-    public  void octalAdd( String number1, String number2 ) throws IOException {
+    public void octalAdd(String number1, String number2) throws IOException {
 
         int firstOctalNumber = Integer.parseInt(number1, 8);
 
         int secondOctalNumber = Integer.parseInt(number2, 8);
 
         System.out.println("1.Add");
-        System.out.println("2.Divide");
-        System.out.println("3.Subtract");
-        System.out.println("4.Multiply");
+        System.out.println("2.Subtract");
         String choice = read.readLine();
 
-        if(choice.equals("1")){
+        if (choice.equals("1")) {
 
             int sum = firstOctalNumber + secondOctalNumber;
 
-            System.out.println(firstOctalNumber + " + "  +  secondOctalNumber + " = " + sum);
+            System.out.println(firstOctalNumber + " + " + secondOctalNumber + " = " + sum);
             System.out.println(number1 + " + " + number2 + " = " + Integer.toOctalString(sum));
 
-        }else if(choice.equals("2")){
+        } else if (choice.equals("2")) {
 
-            int sum = firstOctalNumber / secondOctalNumber;
-
-            System.out.println(firstOctalNumber + " / "  +  secondOctalNumber + " = " + sum);
-            System.out.println(number1 + " / " + number2 + " = " + Integer.toOctalString(sum));
-
-        } else if(choice.equals("3")){
             int sum = firstOctalNumber - secondOctalNumber;
 
-            System.out.println(firstOctalNumber + " - "  +  secondOctalNumber + " = " + sum);
+            System.out.println(firstOctalNumber + " - " + secondOctalNumber + " = " + sum);
             System.out.println(number1 + " - " + number2 + " = " + Integer.toOctalString(sum));
 
-        } else if(choice.equals("4")){
-            int sum = firstOctalNumber * secondOctalNumber;
-
-            System.out.println(firstOctalNumber + " * "  +  secondOctalNumber + " = " + sum);
-            System.out.println(number1 + " * " + number2 + " = " + Integer.toOctalString(sum));
         }
 
 
-
-
-
     }
+
 
     public  void hexadecimalAdd( String number1, String number2 ) throws IOException {
 
@@ -156,9 +135,8 @@ public class Converter {
         int secondHexadecimalNumber = Integer.parseInt(number2, 16);
 
         System.out.println("1.Add");
-        System.out.println("2.Divide");
-        System.out.println("3.Subtract");
-        System.out.println("4.Multiply");
+        System.out.println("2.Subtract");
+
         String choice = read.readLine();
 
         if(choice.equals("1")){
@@ -170,25 +148,16 @@ public class Converter {
 
         }else if(choice.equals("2")){
 
-            int sum = firstHexadecimalNumber / secondHexadecimalNumber;
-
-            System.out.println(firstHexadecimalNumber + " / "  +  secondHexadecimalNumber + " = " + sum);
-            System.out.println(number1 + " / " + number2 + " = " + Integer.toHexString(sum));
-
-        } else if(choice.equals("3")){
-
             int sum = firstHexadecimalNumber - secondHexadecimalNumber;
 
             System.out.println(firstHexadecimalNumber + " - "  +  secondHexadecimalNumber + " = " + sum);
             System.out.println(number1 + " - " + number2 + " = " + Integer.toHexString(sum));
-        } else if(choice.equals("4")){
-            int sum = firstHexadecimalNumber * secondHexadecimalNumber;
 
-            System.out.println(firstHexadecimalNumber + " * "  +  secondHexadecimalNumber + " = " + sum);
-            System.out.println(number1 + " * " + number2 + " = " + Integer.toHexString(sum));
         }
 
     }
+
+}
 
 
 
@@ -285,7 +254,7 @@ public class Converter {
 //        return decimalNum;
 //
 //    }
-}
+
 
 
 
