@@ -228,8 +228,6 @@ public class Converter {
             }
 
 
-
-
             if (remainder != 0) {
                 sum.add(0, remainder);
             }
@@ -241,10 +239,6 @@ public class Converter {
             System.out.print("\n");
 
         }else if (choice.equals("2")) {
-
-
-
-
 
 
             String firstBin = String.valueOf(number1);
@@ -260,11 +254,17 @@ public class Converter {
         }
     }
 
+
+
+
+
     public void octalAdd(String number1, String number2) throws IOException {
 
-        int firstOctalNumber = Integer.parseInt(number1, 8);
+        int num1 = Integer.parseInt(number1);
+        int num2 = Integer.parseInt(number2);
 
-        int secondOctalNumber = Integer.parseInt(number2, 8);
+        List<Integer> num = new ArrayList<>();
+        int i = 0, remainder = 0;
 
         System.out.println("1.Add");
         System.out.println("2.Subtract");
@@ -272,12 +272,31 @@ public class Converter {
 
         if (choice.equals("1")) {
 
-            int sum = firstOctalNumber + secondOctalNumber;
 
-            System.out.println(firstOctalNumber + " + " + secondOctalNumber + " = " + sum);
-            System.out.println(number1 + " + " + number2 + " = " + Integer.toOctalString(sum));
+            while (num1 != 0 || num2 != 0){
+                num.add(0, (int) ((num1 % 10 + num2 % 10 + remainder) % 8));
+                remainder = (int) ((num1 % 10 + num2 % 10 + remainder) / 8);
+                num1 /= 10;
+                num2 /= 10;
+            }
+
+            if (remainder != 0) {
+                num.add(0, remainder);
+            }
+
+            System.out.print("result: ");
+            for (Integer bin : num) {
+                System.out.print(bin);
+            }
+            System.out.print("\n");
+
 
         } else if (choice.equals("2")) {
+
+
+            int firstOctalNumber = Integer.parseInt(number1, 8);
+
+            int secondOctalNumber = Integer.parseInt(number2, 8);
 
             int sum = firstOctalNumber - secondOctalNumber;
 
@@ -290,11 +309,15 @@ public class Converter {
     }
 
 
+
+
     public  void hexadecimalAdd( String number1, String number2 ) throws IOException {
+
 
         int firstHexadecimalNumber = Integer.parseInt(number1, 16);
 
         int secondHexadecimalNumber = Integer.parseInt(number2, 16);
+
 
         System.out.println("1.Add");
         System.out.println("2.Subtract");
@@ -303,12 +326,15 @@ public class Converter {
 
         if(choice.equals("1")){
 
+
+
             int sum = firstHexadecimalNumber + secondHexadecimalNumber;
 
             System.out.println(firstHexadecimalNumber + " + "  +  secondHexadecimalNumber + " = " + sum);
             System.out.println(number1 + " + " + number2 + " = " + Integer.toHexString(sum));
 
         }else if(choice.equals("2")){
+
 
             int sum = firstHexadecimalNumber - secondHexadecimalNumber;
 
