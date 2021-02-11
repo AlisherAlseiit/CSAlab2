@@ -1,5 +1,7 @@
 package com.company;
 
+import javafx.beans.binding.When;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,36 +27,186 @@ public class Converter {
             // right shift 'n' by 1 bit
             // n >>= 1  like n / 2
             n >>= 1;
-
+            System.out.println("n:" + n);
         }
 
         return binaryNum;
     }
 
+    public void binaryToDecimal(int number) {
 
-    public void binaryToDecimal(String number) {
 
-        System.out.println(Integer.parseInt(number, 2));
+        int decimal = 0;
+        int power = 1;
+
+
+        while (number > 0){
+            int lastDigit = number % 10;
+            number /=10;
+
+            decimal += lastDigit * power;
+
+            power = power * 2;
+        }
+        System.out.println(decimal);
+
+
     }
 
 
     public void DecimalToOctal(int number) {
-        System.out.println(Integer.toOctalString(number));
+
+        List<Integer> octal = new ArrayList<>();
+
+        while (number != 0){
+
+            octal.add(0, number % 8);
+            number /= 8;
+
+
+        }
+
+
+        for (Integer num : octal) {
+            System.out.print(num);
+        }
+
+        System.out.println();
+
+
+
     }
 
-    public void octalToDecimal(String number) {
 
-        int decimal = Integer.parseInt(number, 8);
+
+    public void octalToDecimal(int number) {
+
+
+       int power = 1;
+       int decimal = 0;
+
+       while (number > 0){
+           int lastDigit = number % 10;
+           number /= 10;
+
+           decimal += lastDigit * power;
+
+           power = power * 8;
+
+       }
+
         System.out.println(decimal);
+
+
     }
+
+
+
+
+
 
     public void decimalToHexadecimal(int number) {
-        System.out.println(Integer.toHexString(number));
+
+        List<String> hex = new ArrayList<>();
+
+        while (number != 0) {
+
+            String remainder = String.valueOf(number % 16);
+
+            switch (remainder) {
+                case "10":
+                    hex.add(0, "A");
+                    break;
+                case "11":
+                    hex.add(0, "B");
+                    break;
+
+                case "12":
+                    hex.add(0, "C");
+                    break;
+
+                case "13":
+                    hex.add(0, "D");
+                    break;
+
+                case "14":
+                    hex.add(0, "E");
+                    break;
+
+                case "15":
+                    hex.add(0, "F");
+                    break;
+                default:
+                    hex.add(0, remainder);
+            }
+            number /= 16;
+
+
+            for (String num : hex) {
+                System.out.print(num);
+            }
+            System.out.println();
+
+
+        }
     }
+
+
+
+
 
     public void hexadecimalToDecimal(String number) {
 
-        int decimal = Integer.parseInt(number, 16);
+        int decimal = 0;
+        int power = 16;
+
+
+        int num = number.length();
+
+
+        for (int i = 0; i < number.length(); i++) {
+
+
+            char c = number.charAt(i);
+
+            num -= 1;
+
+
+
+        switch (c) {
+            case 'A':
+                decimal += 10 * Math.pow(power, num);
+                break;
+            case 'B':
+                decimal += 11 * Math.pow(power, num);
+                break;
+
+            case 'C':
+                decimal += 12 * Math.pow(power, num);
+                break;
+
+            case 'D':
+                decimal += 13 * Math.pow(power, num);
+                break;
+
+            case 'E':
+                decimal += 14 * Math.pow(power, num);
+                break;
+
+            case 'F':
+                decimal += 15 * Math.pow(power, num);
+                break;
+
+            default:
+                String cs = String.valueOf(c);
+                decimal += Integer.parseInt(cs) * Math.pow(power, num);
+
+
+
+        }
+
+
+        }
         System.out.println(decimal);
     }
 
@@ -74,6 +226,10 @@ public class Converter {
                 number1 = number1 / 10;
                 number2 = number2 / 10;
             }
+
+
+
+
             if (remainder != 0) {
                 sum.add(0, remainder);
             }
@@ -85,6 +241,12 @@ public class Converter {
             System.out.print("\n");
 
         }else if (choice.equals("2")) {
+
+
+
+
+
+
             String firstBin = String.valueOf(number1);
             String secondBin = String.valueOf(number2);
 
@@ -209,51 +371,6 @@ public class Converter {
 
 
 
-
-
-//    public   void decToBinary(int decimalNum){
-//
-//        List<Integer> binNum = new ArrayList<>();
-//
-//        while (decimalNum > 0){
-//
-//            binNum.add(0, decimalNum % 2 );
-//            decimalNum = decimalNum / 2;
-//
-//        }
-//
-//
-//        for( Integer bin : binNum){
-//            System.out.print(bin);
-//        }
-//
-//    }
-//
-//
-//
-//
-//    public int binToDec(int number) {
-//
-//        int decimalNum = 0;
-//        int degree = 0;
-//
-//        while (number != 0){
-//            // 1 or 0
-//            int lastDigit = (number & 1);
-//
-//            decimalNum += lastDigit * Math.pow(2, degree);
-//            degree++;
-//            double sqrt = Math.sqrt(10);
-//            number >>= 1;
-//            System.out.println(number);
-////           number = number / 10;
-//
-//
-//        }
-//
-//        return decimalNum;
-//
-//    }
 
 
 

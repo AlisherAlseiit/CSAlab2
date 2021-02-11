@@ -37,9 +37,9 @@ public class Main {
                     break;
                 case "2":
                     System.out.println("Enter Binary number");
-//                    int binNum = Integer.parseInt(read.readLine());
-                    String binNum =(read.readLine());
-                    converter.binaryToDecimal(binNum);
+                   int binNum = Integer.parseInt(read.readLine());
+//                    String binNum =(read.readLine());
+                   converter.binaryToDecimal(binNum);
                 break;
                 case "3":
                     System.out.println("Enter Decimal number");
@@ -48,7 +48,7 @@ public class Main {
                     break;
                 case "4":
                     System.out.println("Enter Octal number");
-                    String octalNumber = read.readLine();
+                    int octalNumber = Integer.parseInt(read.readLine());
                     converter.octalToDecimal(octalNumber);
                     break;
                 case "5":
