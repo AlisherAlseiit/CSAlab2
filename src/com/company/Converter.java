@@ -27,7 +27,7 @@ public class Converter {
             // right shift 'n' by 1 bit
             // n >>= 1  like n / 2
             n >>= 1;
-            System.out.println("n:" + n);
+
         }
 
         return binaryNum;
@@ -84,6 +84,13 @@ public class Converter {
 
        int power = 1;
        int decimal = 0;
+
+       String n = String.valueOf(number);
+
+       if(n.contains("8") || n.contains("9")){
+           System.out.println("Wrong number");
+           return;
+       }
 
        while (number > 0){
            int lastDigit = number % 10;
@@ -262,6 +269,13 @@ public class Converter {
 
         int num1 = Integer.parseInt(number1);
         int num2 = Integer.parseInt(number2);
+
+
+
+        if(number1.contains("8") || number1.contains("9") && number2.contains("9") || number2.contains("8")){
+            System.out.println("Wrong number");
+            return;
+        }
 
         List<Integer> num = new ArrayList<>();
         int i = 0, remainder = 0;
